@@ -1,29 +1,101 @@
 # The Great Expansion
 
 ## Overview
-This entire project was built completely using Python, executing the following steps in sequence:
-1. All source images representing the expansion stages of the Holy Haram were converted into edge images. This was achieved by applying a filter to the images, isolating and highlighting the most critical details as shown in the video.
-2. Using Python, the gradual visibility and sequential progression of these edge images were controlled to display the stages in chronological order.
+
+**The Great Expansion** is a Python-based project that visualizes the historical expansion stages of the Holy Haram by progressively drawing edge representations of historical images. The entire animation pipeline, from image preprocessing to video generation, is implemented in Python.
+
+The project follows these main steps:
+
+1. **Edge Extraction:** Original images representing different expansion stages are processed using Canny edge detection to preserve the most significant visual features.
+2. **Pixel Extraction:** The coordinates of all edge pixels are extracted and stored as text files.
+3. **Frame Generation:** The extracted pixels are drawn progressively to create a smooth animation that reveals each expansion stage in chronological order.
+4. **Video Compilation:** The generated frames are combined into the final MP4 video.
 
 ---
 
-## Project Files
-* `img_to_edges.py`: Applies a Canny edge detection filter to the original images.
-* `get_pixels.py`: Extracts the pixel coordinates from the edge images and saves them to text files.
-* `draw_img.py`: Reads the pixel coordinates and creates a sequential animation of the edges drawing themselves.
-* `img_2_video.py`: Compiles the generated sequence of images into the final `.mp4` video.
+## Project Structure
+
+| File | Description |
+|------|-------------|
+| `img_to_edges.py` | Converts the original images into edge images using Canny edge detection. |
+| `get_pixels.py` | Extracts edge pixel coordinates and saves them as text files. |
+| `draw_img.py` | Generates animation frames by progressively drawing the extracted pixels. |
+| `img_2_video.py` | Combines the generated frames into the final MP4 video. |
 
 ---
 
-## How to Generate the Video
-To recreate "The Great Expansion" video from scratch, run the Python scripts in the following exact order:
+## Pipeline
 
-1. **Generate Edge Images:** Convert images to edges using `img_to_edges.py` code. Ensure your source images are placed in an `images/` directory before running.
-2. **Extract Pixel Data:** Use `get_pixels.py` to generate txt files. This will read from the `edges/` directory and output `.txt` files containing the pixel coordinates.
-3. **Animate the Frames:** Use `draw_img.py` to generate images that will appear on the video. This script will output a large sequence of frames into a `try1/` directory.
-4. **Compile the Video:** Use `img_2_video.py` to generate the final video. This will read the frames from the `try1/` folder and output the final video file.
+To recreate the animation from scratch, execute the scripts in the following order:
+
+### 1. Generate Edge Images
+
+Run:
+
+```bash
+python img_to_edges.py
+```
+
+Place all source images inside the `images/` directory before running the script.
 
 ---
 
-## Result
-* [Output Video]([https://www.youtube.com/watch?v=9a1oRKIi104](https://www.youtube.com/watch?v=2LPfS_yeRvc))
+### 2. Extract Edge Pixels
+
+Run:
+
+```bash
+python get_pixels.py
+```
+
+This script reads the images from the `edges/` directory and generates text files containing the pixel coordinates.
+
+---
+
+### 3. Generate Animation Frames
+
+Run:
+
+```bash
+python draw_img.py
+```
+
+This script progressively draws the extracted pixels and saves the generated frames into the `try1/` directory.
+
+---
+
+### 4. Create the Final Video
+
+Run:
+
+```bash
+python img_2_video.py
+```
+
+The script compiles all generated frames into the final MP4 video.
+
+---
+
+## Demo
+
+🎥 **Watch the final animation on YouTube**
+
+[![Watch on YouTube](https://img.shields.io/badge/YouTube-Watch%20Video-red?logo=youtube)](https://www.youtube.com/watch?v=2LPfS_yeRvc)
+
+Or visit the video directly:
+
+https://www.youtube.com/watch?v=2LPfS_yeRvc
+
+---
+
+## Requirements
+
+- Python 3.x
+- OpenCV (`opencv-python`)
+- NumPy
+
+Install the required packages using:
+
+```bash
+pip install opencv-python numpy
+```
